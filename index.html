@@ -6,189 +6,8 @@
     <title>PROGRAMME D'APPUI | AU DEVELOPMENT URBANO - RURAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"> </script>
-    <style>
-        :root {
-            --primary-green: #2e8b57;
-            --secondary-green: #3cb371;
-            --primary-blue: #1e90ff;
-            --secondary-blue: #4682b4;
-            --primary-red: #ff4500;
-            --secondary-red: #dc143c;
-            --black: #212121;
-            --light-gray: #f5f5f5;
-        }
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; 
-        }
-        
-        body {
-            position: relative;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--black);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            /*background-color: var(--light-gray);*/
-        }
-        
-        .navbar {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(20px); 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+    <link rel="stylesheet" href="css/styles.css">
 
-        #dropdownMenu {
-            transition: all 0.3s ease;
-            transform-origin: top;
-            transform: scaleY(0);
-            opacity: 0;
-            display: block; 
-        }
-
-        #dropdownMenu:not(.hidden) {
-            transform: scaleY(1);
-            opacity: 1;
-        }
-
-        #dropdownMenu a {
-            color: var(--black); /* Change to your desired text color */
-
-        }
-
-        #dropdownMenu a:hover {
-            background-color: rgba(0, 0, 0, 0.1); /* Light hover effect */
-
-        }
-        
-        .hero {
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.5) 50%);
-            color: white;
-        }
-        
-        .card {
-            transition: all 1.0s ease;
-            background: transparent;
-            height: 200px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        }
-        
-        .urban-card {
-            border-top: 4px solid var(--primary-blue);
-        }
-        
-        .rural-card {
-            border-top: 4px solid var(--primary-green);
-            background: transparent;
-        }
-        
-        .impact-card {
-            border-top: 4px solid var(--primary-red);
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-green);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--secondary-green);
-        }
-        
-        .btn-secondary1 {
-            background-color: transparent;
-            color: white;
-        }
-
-        .btn-secondary {
-            background-color: primary-blue;
-            color: white;
-        }
-        
-        .btn-secondary:hover {
-            background-color: var(--secondary-blue);
-        }
-        
-        .btn-alert {
-            background-color: var(--primary-red);
-            color: white;
-        }
-        
-        .btn-alert:hover {
-            background-color: var(--secondary-red);
-        }
-        
-        .stat-item {
-            border-left: 3px solid var(--primary-green);
-            background: rgba(255, 255, 255, 0.5); 
-            backdrop-filter: blur(20px); 
-            
-        }
-        
-        .stat-item:nth-child(2) {
-            border-left-color: var(--primary-blue);
-        }
-        
-        .stat-item:nth-child(3) {
-            border-left-color: var(--primary-red);
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary-green), var(--primary-blue));
-        }
-        
-        .footer {
-            background-color: var(--black);
-            color: white;
-        }
-        
-        .footer a:hover {
-            color: var(--primary-green);
-        }
-
-        .bg-white {
-            background-color: rgba(255, 255, 255, 0.9); /* 90% opaque */
-        }
-        
-        .bg-gray-50 {
-            background-color: rgba(245, 245, 245, 0.9); /* 90% opaque */
-        }
-        
-        
-        @media (min-width: 768px) {
-            .timeline-item:nth-child(odd) {
-                padding-right: 50px;
-                padding-left: 0;
-                text-align: right;
-            }
-            
-            .timeline-item:nth-child(odd)::before {
-                left: auto;
-                right: 0;
-            }
-            
-            .timeline-item:nth-child(even) {
-                padding-left: 50px;
-            }
-        }
-    </style>
 </head>
     <script>
     // Wait for DOM to load
@@ -262,25 +81,38 @@
     </div>
     </section>
 
+    <!-- After hero Section, (Work, Integrity, Excellence) -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="stat-item p-6">
-                    <h3 class="text-4xl font-bold mb-2" style="color: var(--primary-green);">85%</h3>
-                    <p class="text-lg">Increased rural economic activity in our partner communities</p>
-                </div>
-                <div class="stat-item p-6">
-                    <h3 class="text-4xl font-bold mb-2" style="color: var(--primary-blue);">42</h3>
-                    <p class="text-lg">Urban centers connected with sustainable rural supply chains</p>
-                </div>
-                <div class="stat-item p-6">
-                    <h3 class="text-4xl font-bold mb-2" style="color: var(--primary-red);">1.2M</h3>
-                    <p class="text-lg">People positively impacted by our development initiatives</p>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            
+            <div class="stat-item p-6">
+                <h3 class="text-4xl font-bold mb-2" style="color: var(--primary-green);">Work</h3>
+                <p class="text-lg text-gray-700">
+                We take action where it matters turning vision into impact on the ground.
+                </p>
+            </div>
+            
+            <div class="stat-item p-6">
+                <h3 class="text-4xl font-bold mb-2" style="color: var(--primary-blue);">Integrity</h3>
+                <p class="text-lg text-gray-700">
+                We stand firm on honesty, accountability, and doing what's right, always.
+                </p>
+            </div>
+            
+            <div class="stat-item p-6">
+                <h3 class="text-4xl font-bold mb-2" style="color: var(--primary-red);">Excellence</h3>
+                <p class="text-lg text-gray-700">
+                We don’t settle. We exceed expectations through quality and consistency.
+                </p>
+            </div>
+
             </div>
         </div>
     </section>
 
+
+    <!-- Our Vision -->
     <section id="about" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
@@ -376,6 +208,46 @@
     </div>
     </section>
 
+<!-- OUR WORK -->
+<section id="our-work" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-blue-700 ">
+        Our Work
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
+      <div>
+        <h3 class="text-xl font-bold text-green-600 mb-2">Education</h3>
+        <p class="text-gray-800">Supporting vulnerable children with access to education.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold text-green-600 mb-2">Health</h3>
+        <p class="text-gray-800">Fighting HIV, maternal mortality, and chronic illnesses.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold text-green-600 mb-2">Environment</h3>
+        <p class="text-gray-800">Reforestation, clean water, and carbon trading.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold text-green-600 mb-2">Empowerment</h3>
+        <p class="text-gray-800">Income-generating activities, farming, livestock, and sanitation.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold text-green-600 mb-2">Rights</h3>
+        <p class="text-gray-800">Protecting women and children, promoting human rights.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold text-green-600 mb-2">Infrastructure</h3>
+        <p class="text-gray-800">Building essential infrastructure in urban and rural communities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
     <!-- Projects Section -->
     <section id="projects" class="py-20 bg-white">
         <div class="container mx-auto px-4">
@@ -448,5 +320,63 @@
             </div>
         </div>
     </section>
-    </div>      
+
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold text-green-700 mb-4">Contact Us</h2>
+     </div>
+
+    <div class="max-w-2xl mx-auto space-y-4 text-center">
+      <p>
+        📍 
+        <a href="https://maps.app.goo.gl/oERgeicWMieB14Ld6" 
+           target="_blank" 
+           class="text-blue-600 hover:underline">
+          PADUR HQ: Mawanga Avenue, 33 BIS, Luyi, NGABA - Kinshasa
+        </a>
+      </p>
+
+      <p>
+        📧 
+        <a href="mailto:padurdrc@gmail.com" class="text-blue-600 hover:underline">
+          padurdrc@gmail.com
+        </a>
+      </p>
+
+      <p>📱 +243 000 000 000</p> 
+      <p>🌍 Insta/Fb/LinkedIn </p>
+    </div>
+
+    <form action="https://formsubmit.co/savayichelsea90@gmail.com" method="POST"
+          class="mt-10 bg-white shadow-md rounded-lg p-8 max-w-2xl mx-auto space-y-6">
+      <input type="hidden" name="_subject" value="New Contact Submission from PADUR Website">
+      <input type="hidden" name="_captcha" value="false">
+
+      <input type="text" name="name" placeholder="Your Name" required
+             class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-600">
+
+      <input type="email" name="email" placeholder="Your Email" required
+             class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-600">
+
+      <textarea name="message" placeholder="Your Message" required
+                class="w-full border border-gray-300 px-4 py-2 rounded h-32 resize-none focus:outline-none focus:ring-2 focus:ring-green-600"></textarea>
+
+      <button type="submit"
+              class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded transition duration-300">
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-100 text-center text-gray-700 py-6 mt-12">
+  <p class="text-sm">&copy; 2025 PADUR NGO. All Rights Reserved.</p>
+</footer>
+
+
 </body>
+</html>
