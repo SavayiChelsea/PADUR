@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROGRAMME D'APPUI | AU DEVELOPMENT URBANO - RURAL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"> </script>
+    <style>
+        :root {
+            --primary-green: #2e8b57;
+            --secondary-green: #3cb371;
+            --primary-blue: #1e90ff;
+            --secondary-blue: #4682b4;
+            --primary-red: #ff4500;
+            --secondary-red: #dc143c;
+            --black: #212121;
+            --light-gray: #f5f5f5;
+        }
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+        }
+        
+        body {
+            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--black);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            /*background-color: var(--light-gray);*/
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        #dropdownMenu {
+            transition: all 0.3s ease;
+            transform-origin: top;
+            transform: scaleY(0);
+            opacity: 0;
+            display: block; 
+        }
+
+        #dropdownMenu:not(.hidden) {
+            transform: scaleY(1);
+            opacity: 1;
+        }
+
+        #dropdownMenu a {
+            color: var(--black); /* Change to your desired text color */
+
+        }
+
+        #dropdownMenu a:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Light hover effect */
+
+        }
+        
+        .hero {
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.5) 50%);
+            color: white;
+        }
+        
+        .card {
+            transition: all 1.0s ease;
+            background: transparent;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .urban-card {
+            border-top: 4px solid var(--primary-blue);
+        }
+        
+        .rural-card {
+            border-top: 4px solid var(--primary-green);
+            background: transparent;
+        }
+        
+        .impact-card {
+            border-top: 4px solid var(--primary-red);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-green);
+        }
+        
+        .btn-secondary1 {
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: primary-blue;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-blue);
+        }
+        
+        .btn-alert {
+            background-color: var(--primary-red);
+            color: white;
+        }
+        
+        .btn-alert:hover {
+            background-color: var(--secondary-red);
+        }
+        
+        .stat-item {
+            border-left: 3px solid var(--primary-green);
+            background: rgba(255, 255, 255, 0.5); 
+            backdrop-filter: blur(20px); 
+            
+        }
+        
+        .stat-item:nth-child(2) {
+            border-left-color: var(--primary-blue);
+        }
+        
+        .stat-item:nth-child(3) {
+            border-left-color: var(--primary-red);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-green), var(--primary-blue));
+        }
+        
+        .footer {
+            background-color: var(--black);
+            color: white;
+        }
+        
+        .footer a:hover {
+            color: var(--primary-green);
+        }
+
+        .bg-white {
+            background-color: rgba(255, 255, 255, 0.9); /* 90% opaque */
+        }
+        
+        .bg-gray-50 {
+            background-color: rgba(245, 245, 245, 0.9); /* 90% opaque */
+        }
+        
+        
+        @media (min-width: 768px) {
+            .timeline-item:nth-child(odd) {
+                padding-right: 50px;
+                padding-left: 0;
+                text-align: right;
+            }
+            
+            .timeline-item:nth-child(odd)::before {
+                left: auto;
+                right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                padding-left: 50px;
+            }
+        }
+    </style>
+</head>
+    <script>
+    // Wait for DOM to load
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        
+        if(dropdownButton && dropdownMenu) {
+            // Toggle menu on button click
+            dropdownButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dropdownMenu.classList.toggle('hidden');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function() {
+                dropdownMenu.classList.add('hidden');
+            });
+            
+            // Prevent menu from closing when clicking inside it
+            dropdownMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+    });
+</script>
+
+<body>
+    <header> 
+        <nav class="navbar sticky top-0 z-[9999]">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex-col items-center">
+                <img src="images/PADUR-LOGO.png" class="h-40">
+            </div>
+            <div class="hidden md:flex justify-center space-x-8">
+                <a href="#home" class="font-medium hover:text-green-600 transition">Home</a>
+                <a href="#about" class="font-medium hover:text-blue-600 transition">About</a>
+                <a href="#projects" class="font-medium hover:text-red-600 transition">Projects</a>
+                <a href="#impact" class="font-medium hover:text-green-600 transition">Impact</a>
+                <a href="#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
+            </div>
+            <div class="md:hidden relative">
+                <button id="dropdownButton" class="font-medium hover:text-green-600 transition">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+                <div id="dropdownMenu" class="absolute right-0 hidden bg-white shadow-lg rounded mt-2">
+                    <a href="#home" class="block px-4 py-2 hover:bg-gray-200">Home</a>
+                    <a href="#about" class="block px-4 py-2 hover:bg-gray-200">About</a>
+                    <a href="#projects" class="block px-4 py-2 hover:bg-gray-200">Projects</a>
+                    <a href="#impact" class="block px-4 py-2 hover:bg-gray-200">Impact</a>
+                    <a href="#contact" class="block px-4 py-2 hover:bg-gray-200">Contact</a>
+                </div>
+
+    </header>
+    <div class="background-container">
+        <img src="images/urban-rural.jpg">
+
+    </div>
+
+   
+    <section id="home" class="hero h-screen py-20">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center h-full">
+        <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Bridging Urban & Rural Communities</h1>
+            <p class="text-xl mb-8">Creating sustainable development solutions that connect cities and countryside for a balanced future.</p>
+            <div class="flex justify-center md:justify-start space-x-4">
+                <button class="btn-primary px-6 py-3 rounded-full font-medium transition">Our Projects</button>
+                <button class="btn-secondary1 border border-white px-6 py-3 rounded-full font-medium transition">Learn More</button>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="stat-item p-6">
+                    <h3 class="text-4xl font-bold mb-2" style="color: var(--primary-green);">85%</h3>
+                    <p class="text-lg">Increased rural economic activity in our partner communities</p>
+                </div>
+                <div class="stat-item p-6">
+                    <h3 class="text-4xl font-bold mb-2" style="color: var(--primary-blue);">42</h3>
+                    <p class="text-lg">Urban centers connected with sustainable rural supply chains</p>
+                </div>
+                <div class="stat-item p-6">
+                    <h3 class="text-4xl font-bold mb-2" style="color: var(--primary-red);">1.2M</h3>
+                    <p class="text-lg">People positively impacted by our development initiatives</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-red);"> Our Vision</h2>
+                <p class="max-w-3xl mx-auto text-lg">To be the leading non-governmental institution with strategy leadership in helping people change their lives for the better and as well as sustainable urban rural development support program.</p>
+            </div>
+
+            <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-red);"> Core Values</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="card urban-card bg-white p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class= "fa-solid fa-tower-cell text-2xl" style="color: var(--primary-blue);"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold"> Communication </h3>
+                    </div>
+                    <p class="mb-6">We PADUR promote open communication that fosters partnership and enhances timely, effective and appropriate responses.</p>
+                    
+                </div>
+                
+                <div class="card rural-card bg-white p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-lightbulb text-2xl" style="color: var(--primary-green);"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Innovation </h3>
+                    </div>
+                    <p class="mb-6">We are committed to a supportive environment that encourages new ideas, creativity and willing to explore new approaches to improving quality of life for all persons.
+                    </p>
+                </div>
+
+                <div class="card impact-card bg-white p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-handshake text-2xl" style="color: var(--primary-red);"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Integrity </h3>
+                    </div>
+                    <p class="mb-6">Maintaining the highest standards of behavior which encompasses honesty, ethics, and doing the right things for the right reasons.
+                    </p>
+                </div>
+
+                <div class="card urban-card bg-white p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class= "fa-solid fa-thumbs-up text-2xl" style="color: var(--primary-blue);"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Service Excellence </h3>
+                    </div>
+                    <p class="mb-6">We are committed to our standards of service excellence and dedicated to exceeding the expectations of those we serve.
+                    </p>
+                </div>
+
+                <div class="card rural-card bg-white p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class= "fa-solid fa-people-group text-2xl" style="color: var(--primary-green);"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">People </h3>
+                    </div>
+                    <p class="mb-6">We respect each person as a member of the PADUR community and a sustaining commitment to work together.
+                    </p>
+                </div>
+
+                <div class="card impact-card bg-white p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-hand-holding-dollar text-2xl" style="color: var(--primary-red);"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Stewardship </h3>
+                    </div>
+                    <p class="mb-6"> Dedicated to responsible stewardship of our assets and financial resources, and to community service.
+                    </p>
+                </div>
+
+                <div class="card urban-card bg-white p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class= "fa-solid fa-thumbs-up text-2xl" style="color: var(--primary-blue);"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold"> Visionary </h3>
+                    </div>
+                    <p class="mb-6">The ability and willingness to look forward to the future and make decisions necessary to accomplish
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Featured Projects</h2>
+                <p class="max-w-3xl mx-auto text-lg">Our initiatives span across various sectors, creating tangible impact where urban and rural meet.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card bg-white overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                             alt="Farm to city project" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <span class="text-white font-medium">Ongoing</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Farm-to-City Direct</h3>
+                        <p class="text-gray-600 mb-4">Connecting rural farmers directly with urban consumers through an e-commerce platform and logistics network.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium" style="color: var(--primary-green);">Agriculture</span>
+                            <button class="btn-primary px-3 py-1 rounded-full text-xs font-medium transition">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-white overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Green corridor project" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <span class="text-white font-medium">Completed</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Green Urban Corridors</h3>
+                        <p class="text-gray-600 mb-4">Transforming abandoned urban spaces into productive green areas using rural permaculture techniques.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium" style="color: var(--primary-blue);">Urban Planning</span>
+                            <button class="btn-secondary px-3 py-1 rounded-full text-xs font-medium transition">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-white overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" 
+                             alt="Rural tech hub" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <span class="text-white font-medium">Planning</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Rural Digital Hubs</h3>
+                        <p class="text-gray-600 mb-4">Establishing technology centers in rural areas to provide education, remote work opportunities, and digital services.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium" style="color: var(--primary-red);">Technology</span>
+                            <button class="btn-alert px-3 py-1 rounded-full text-xs font-medium transition">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="btn-primary px-6 py-3 rounded-full font-medium transition">View All Projects</button>
+            </div>
+        </div>
+    </section>
+    </div>      
+</body>
