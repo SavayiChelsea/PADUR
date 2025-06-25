@@ -1,4 +1,8 @@
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
     --primary-green: #2e8b57;
     --secondary-green: #3cb371;
