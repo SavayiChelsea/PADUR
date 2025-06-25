@@ -33,6 +33,31 @@
             });
         }
     });
+    let slideIndices = {}; // Object to keep track of slide indices for each slideshow
+
+function showSlides(n, slideshowId) {
+    let slides = document.querySelectorAll(`#${slideshowId} .mySlides`);
+    let index = slideIndices[slideshowId] || 1; // Get the current index or default to 1
+    if (n > slides.length) { index = 1; }
+    if (n < 1) { index = slides.length; }
+    slideIndices[slideshowId] = index; // Update the index for this slideshow
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    slides[index - 1].style.display = "block";  
+}
+
+function plusSlides(n, slideshowId) {
+    showSlides(slideIndices[slideshowId] + n, slideshowId);
+}
+
+// Initialize the slideshow for each slideshow container
+document.querySelectorAll('.slideshow-container').forEach((slideshow) => {
+    const slideshowId = slideshow.id; // Get the ID of the slideshow
+    slideIndices[slideshowId] = 1; // Initialize the index for each slideshow
+    showSlides(1, slideshowId); // Show the first slide
+});
+
 </script>
 
 <body>
@@ -260,80 +285,91 @@
   </div>
 </section>
 
-
-
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Featured Projects</h2>
-                <p class="max-w-3xl mx-auto text-lg">Our initiatives span across various sectors, creating tangible impact where urban and rural meet.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card bg-white overflow-hidden">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="images/padur_farming.jpg" 
-                             alt="Farm to city project" 
-                             class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                            <span class="text-white font-medium">Ongoing</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Farm-to-City Direct</h3>
-                        <p class="text-gray-600 mb-4">Connecting rural farmers directly with urban consumers through an e-commerce platform and logistics network.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm font-medium" style="color: var(--primary-green);">Agriculture</span>
-                            <button class="btn-primary px-3 py-1 rounded-full text-xs font-medium transition">View Details</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card bg-white overflow-hidden">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                             alt="Green corridor project" 
-                             class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                            <span class="text-white font-medium">Completed</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Green Urban Corridors</h3>
-                        <p class="text-gray-600 mb-4">Transforming abandoned urban spaces into productive green areas using rural permaculture techniques.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm font-medium" style="color: var(--primary-blue);">Urban Planning</span>
-                            <button class="btn-secondary px-3 py-1 rounded-full text-xs font-medium transition">View Details</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card bg-white overflow-hidden">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" 
-                             alt="Rural tech hub" 
-                             class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                            <span class="text-white font-medium">Planning</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Rural Digital Hubs</h3>
-                        <p class="text-gray-600 mb-4">Establishing technology centers in rural areas to provide education, remote work opportunities, and digital services.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm font-medium" style="color: var(--primary-red);">Technology</span>
-                            <button class="btn-alert px-3 py-1 rounded-full text-xs font-medium transition">View Details</button>
-                        </div>
-                    </div>
-                </div>
+<section id="projects" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">Featured Projects</h2>
+            <p class="max-w-3xl mx-auto text-lg">Our initiatives span across various sectors, creating tangible impact where urban and rural meet.</p>
         </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project Card 1 -->
+            <div class="card bg-white overflow-hidden relative">
+                <div class="slideshow-container" id="slideshow1">
+                    <div class="mySlides fade">
+                        <img src="images/padur_farming.jpg" alt="Farm to city project" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="images/padur_chicks.jpg" alt="Another view" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="images/another_image2.jpg" alt="Another view" class="w-full h-48 object-cover">
+                    </div>
+                    <!-- Navigation buttons -->
+                    <a class="prev" onclick="plusSlides(-1, 'slideshow1')">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1, 'slideshow1')">&#10095;</a>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Farm-to-City Direct</h3>
+                    <p class="text-gray-600 mb-4">Connecting rural farmers directly with urban consumers through an e-commerce platform and logistics network.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium" style="color: var(--primary-green);">Agriculture</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="text-center mt-12">
-            <button class="btn-primary px-6 py-3 rounded-full font-medium transition">View All Projects</button>
+            <!-- Project Card 2 -->
+            <div class="card bg-white overflow-hidden relative">
+                <div class="slideshow-container" id="slideshow2">
+                    <div class="mySlides fade">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Green corridor project" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="images/another_image3.jpg" alt="Another view" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="images/another_image4.jpg" alt="Another view" class="w-full h-48 object-cover">
+                    </div>
+                    <a class="prev" onclick="plusSlides(-1, 'slideshow2')">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1, 'slideshow2')">&#10095;</a>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Green Urban Corridors</h3>
+                    <p class="text-gray-600 mb-4">Transforming abandoned urban spaces into productive green areas using rural permaculture techniques.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium" style="color: var(--primary-blue);">Urban Planning</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="card bg-white overflow-hidden relative">
+                <div class="slideshow-container" id="slideshow3">
+                    <div class="mySlides fade">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80" alt="Rural tech hub" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="images/another_image5.jpg" alt="Another view" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="images/another_image6.jpg" alt="Another view" class="w-full h-48 object-cover">
+                    </div>
+                    <a class="prev" onclick="plusSlides(-1, 'slideshow3')">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1, 'slideshow3')">&#10095;</a>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Rural Digital Hubs</h3>
+                    <p class="text-gray-600 mb-4">Establishing technology centers in rural areas to provide education, remote work opportunities, and digital services.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium" style="color: var(--primary-red);">Technology</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
 
 
 <!-- CONTACT -->
