@@ -16,6 +16,12 @@
     width: 100%;
     height: 100%;
     z-index: -1; 
+    overflow: hidden;
+}
+.background-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container */
 }
 
 body {
@@ -24,14 +30,22 @@ body {
     color: var(--black);
     line-height: 1.6;
     margin: 0;
+    min-height: 100vh;
     padding: 0;
     /*background-color: var(--light-gray);*/
 }
 
 .navbar {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(20px); 
+    /*background: rgba(255, 255, 255, 0.4);*/
+    background: linear-gradient(to right, 
+        rgba(255, 255, 255, 0.7) 0%, 
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(2px); 
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display:flex;
+    justify-content: center;
+    color:#f5f5f5
 }
 
 #dropdownMenu {
@@ -65,7 +79,7 @@ body {
 .card {
     transition: all 1.0s ease;
     background: transparent;
-    height: 200px;
+    height: 250px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -149,6 +163,8 @@ body {
 .footer {
     background-color: var(--black);
     color: white;
+    margin-top: auto; 
+    padding: 1rem
 }
 
 .footer a:hover {
