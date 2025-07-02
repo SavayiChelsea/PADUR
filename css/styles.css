@@ -4,6 +4,11 @@ html {
 }
 
 :root {
+    --font: 'Poppins', sans-serif;
+    
+    --color: #9176FF;
+    --bg-color: #f4f4f4;
+    
     --primary-green: #2e8b57;
     --secondary-green: #3cb371;
     --primary-blue: #1e90ff;
@@ -337,6 +342,84 @@ img {
     width: 26px;
     height: 7px;
     border-radius: 25px;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .mySwiper {
+        padding: 30px 5px; /* Reduced padding on mobile */
+    }
+    
+    .swiper-container {
+        margin: 0 10px; /* Even smaller margins on mobile */
+    }
+    
+    .imageBox {
+        height: 250px; /* Slightly smaller image height on mobile */
+        padding: 15px 0;
+    }
+    
+    .card-info {
+        padding: 15px 0;
+    }
+    
+    .card-info h2 {
+        font-size: 18px; /* Slightly smaller text on mobile */
+    }
+    
+    /* Make navigation arrows smaller and better positioned on mobile */
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+        margin-top: -15px; /* Center vertically */
+    }
+    
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 1.2rem; /* Smaller arrows on mobile */
+    }
+    
+    /* Hide navigation arrows on very small screens */
+    @media (max-width: 480px) {
+        .swiper-button-next,
+        .swiper-button-prev {
+            display: none;
+        }
+    }
+    
+    /* Adjust pagination for mobile */
+    .swiper-pagination {
+        bottom: 10px;
+    }
+    
+    .swiper-pagination-bullet {
+        width: 20px;
+        height: 6px;
+        margin: 0 3px;
+    }
+}
+
+/* Very small screens (phones in portrait) */
+@media (max-width: 480px) {
+    .mySwiper {
+        padding: 20px 5px;
+    }
+    
+    .imageBox {
+        height: 200px;
+        padding: 10px 0;
+    }
+    
+    .card-info {
+        padding: 10px 0;
+        gap: 6px;
+    }
+    
+    .card-info h2 {
+        font-size: 16px;
+        line-height: 1.3;
+    }
 }
 
 @media (min-width: 768px) {

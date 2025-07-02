@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROGRAMME D'APPUI | AU DEVELOPMENT URBANO - RURAL</title>
+    <title>PADUR</title>
 
      <!-- Project section dependencies -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>  
@@ -12,61 +12,11 @@
     <script src="https://cdn.tailwindcss.com"> </script>
     <link rel="stylesheet" href="css/styles.css">
     
-   
-    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 
 
 </head>
-    <script>
-    // Wait for DOM to load
-    document.addEventListener('DOMContentLoaded', function() {
-        const dropdownButton = document.getElementById('dropdownButton');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        
-        if(dropdownButton && dropdownMenu) {
-            // Toggle menu on button click
-            dropdownButton.addEventListener('click', function(e) {
-                e.stopPropagation();
-                dropdownMenu.classList.toggle('hidden');
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function() {
-                dropdownMenu.classList.add('hidden');
-            });
-            
-            // Prevent menu from closing when clicking inside it
-            dropdownMenu.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        }
-    });
-    let slideIndices = {}; // Object to keep track of slide indices for each slideshow
 
-function showSlides(n, slideshowId) {
-    let slides = document.querySelectorAll(`#${slideshowId} .mySlides`);
-    let index = slideIndices[slideshowId] || 1; // Get the current index or default to 1
-    if (n > slides.length) { index = 1; }
-    if (n < 1) { index = slides.length; }
-    slideIndices[slideshowId] = index; // Update the index for this slideshow
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-    }
-    slides[index - 1].style.display = "block";  
-}
-
-function plusSlides(n, slideshowId) {
-    showSlides(slideIndices[slideshowId] + n, slideshowId);
-}
-
-// Initialize the slideshow for each slideshow container
-document.querySelectorAll('.slideshow-container').forEach((slideshow) => {
-    const slideshowId = slideshow.id; // Get the ID of the slideshow
-    slideIndices[slideshowId] = 1; // Initialize the index for each slideshow
-    showSlides(1, slideshowId); // Show the first slide
-});
-
-</script>
 
 <body>
     <header> 
@@ -120,8 +70,8 @@ document.querySelectorAll('.slideshow-container').forEach((slideshow) => {
                     <a href="#projects" class="btn-primary px-6 py-3 rounded-full font-medium transition block text-center">
                         Our Projects
                     </a>
-                    <a href="#about" class="btn-secondary1 border border-white px-6 py-3 rounded-full font-medium transition block text-center">
-                        Learn More
+                    <a href="pay.html" class="btn-secondary1 border border-white px-6 py-3 rounded-full font-medium transition block text-center">
+                        Donate
                     </a>
                 </div>
         </div>
@@ -415,8 +365,16 @@ document.querySelectorAll('.slideshow-container').forEach((slideshow) => {
         </a>
       </p>
 
-      <p> <i class="fa-solid fa-phone"></i> +243 000 000 000</p> 
-      <p> <i class="fa-brands fa-square-instagram"></i> Insta/Fb/LinkedIn </p>
+      <p>
+        <a href="tel:0117778688">
+            <i class="fa-solid fa-phone"></i> 0117778688
+        </a>
+      </p>
+      <p>
+        <a href="https://instagram.com/padurngo">
+            <i class="fa-brands fa-square-instagram"></i> padurngo
+        </a>
+      </p>
     </div>
 
     <form action="https://formsubmit.co/padurdrc@gmail.com" method="POST"
@@ -448,5 +406,6 @@ document.querySelectorAll('.slideshow-container').forEach((slideshow) => {
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="main.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
 </body>
 </html>
