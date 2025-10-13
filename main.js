@@ -73,3 +73,56 @@ window.addEventListener("load", function () {
         }
         });
     });
+
+// Mobile carousel functionality
+const projects = [
+    {
+        image: "images/padur_schoolvisit.jpg",
+        title: "Remote School Visit",
+        description: "Dr Debbie Maloba accompanied with her coordinator and some committee's members visiting challenged schools in remote areas"
+    },
+    {
+        image: "images/padur_soapmaking.jpg",
+        title: "Soap Making Training",
+        description: "PADUR Training people with special needs and refugees in soap making in Goma DRC(War Zone)"
+    },
+    {
+        image: "images/padur_leadingAnnualMeetings.jpg",
+        title: "Annual Meetings",
+        description: "Aurelie Biselenge, PADUR Coordinator, leading the annual meetings."
+    },
+    {
+        image: "images/padur_ppt.jpg",
+        title: "Formation en entreprenariat",
+        description: "17 Women trained in entrepreneurship each received $5000 to start a business."
+    },
+    {
+        image: "images/padur_schoolvisit6.jpg",
+        title: "Remote School Visit",
+        description: "Dr Debbie Maloba and member evaluating the needs of the children"
+    }
+];
+
+let currentProjectIndex = 0;
+
+function updateMobileProject(index) {
+    const project = projects[index];
+    document.getElementById('mobileProjectImage').src = project.image;
+    document.getElementById('mobileProjectImage').alt = project.title;
+    document.getElementById('mobileProjectTitle').textContent = project.title;
+    document.getElementById('mobileProjectDescription').textContent = project.description;
+    document.getElementById('currentProject').textContent = index + 1;
+}
+
+document.getElementById('nextProject').addEventListener('click', () => {
+    currentProjectIndex = (currentProjectIndex + 1) % projects.length;
+    updateMobileProject(currentProjectIndex);
+});
+
+document.getElementById('prevProject').addEventListener('click', () => {
+    currentProjectIndex = (currentProjectIndex - 1 + projects.length) % projects.length;
+    updateMobileProject(currentProjectIndex);
+});
+
+// Initialize
+document.getElementById('totalProjects').textContent = projects.length;
