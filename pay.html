@@ -1,86 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment </title>
-    <link rel="stylesheet" href="css/pay.css">
+    <title>Donate</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
 
-<body>
+    <!-- Navbar -->
+    <nav class="bg-white shadow fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center h-16">
+            <a href="index.html" class="text-xl font-bold text-blue-700">PADUR</a>
+            <div class="space-x-6 hidden md:flex">
+                <a href="index.html#home" class="text-gray-700 hover:text-blue-700 transition">Home</a>
+                <a href="index.html#projects" class="text-gray-700 hover:text-blue-700 transition">Projects</a>
+                <a href="index.html#about" class="text-gray-700 hover:text-blue-700 transition">About</a>
+                <a href="pay.html" class="text-blue-700 font-semibold">Donate</a>
+            </div>
+            <button class="block md:hidden focus:outline-none">
+                <!-- Hamburger icon -->
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
 
-    <div class="container">
-        <form action="">
-            <div class="row">
-                <div class="column">
-                    <h3 class="title">Billing Address</h3>
-                    <div class="input-box">
-                        <span>Full Name :</span>
-                        <input type="text" placeholder="John Doe">
-                    </div>
-                    <div class="input-box">
-                        <span>Email :</span>
-                        <input type="email" placeholder="johndoe@gmail.com">
-                    </div>
-                    <div class="input-box">
-                        <span>Address :</span>
-                        <input type="text" placeholder="Town">
-                    </div>
-                    <div class="input-box">
-                        <span>City :</span>
-                        <input type="text" placeholder="Kinshasa">
-                    </div>
+    <div class="bg-white p-8 rounded shadow-md max-w-lg w-full">
+        <h1 class="text-3xl font-bold text-center mb-6">Support Our Cause</h1>
+        <p class="text-center mb-8 text-gray-600">
+            Choose your preferred payment method
+        </p>
 
-                    <div class="flex">
-                        <div class="input-box">
-                            <span>Country :</span>
-                            <input type="text" placeholder="Congo">
-                        </div>
-                        <div class="input-box">
-                            <span>Zip Code :</span>
-                            <input type="number" placeholder="123 456">
-                        </div>
-                    </div>
-                </div>
+        <form id="donate-form">
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2" for="amount">Donation Amount</label>
+                <input type="number" min="1" id="amount" name="amount" class="w-full p-2 border rounded" placeholder="Enter amount" required>
+            </div>
 
-                <div class="column">
-                    <h3 class="title">Payment</h3>
-                    <div class="input-box">
-                        <span>Cards Accepted :</span>
-                        <img src="images/imgcards.png" alt="">
-                    </div>
-                    <div class="input-box">
-                        <span>Name On Card :</span>
-                        <input type="text" placeholder="John Doe">
-                    </div>
-                    <div class="input-box">
-                        <span>Credit Card Number :</span>
-                        <input type="number" placeholder="1111 2222 3333 4444">
-                    </div>
-                    <div class="input-box">
-                        <span>Exp. Month :</span>
-                        <input type="text" placeholder="August">
-                    </div>
-                
-                    <div class="flex">
-                        <div class="input-box">
-                            <span>Exp. Year :</span>
-                            <input type="number" placeholder="2025">
-                        </div>
-                        <div class="input-box">
-                            <span>CVV :</span>
-                            <input type="number" placeholder="123">
-                        </div>
-                    </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 mb-2">Payment Method</label>
+                <div class="flex space-x-4">
+                    <button type="button" class="bg-blue-600 text-white px-4 py-2 rounded focus:outline-none" onclick="showPayment('card')">Card</button>
+                    <button type="button" class="bg-green-600 text-white px-4 py-2 rounded focus:outline-none" onclick="showPayment('mpesa')">M-Pesa</button>
+                    <button type="button" class="bg-yellow-500 text-white px-4 py-2 rounded focus:outline-none" onclick="showPayment('paypal')">PayPal</button>
                 </div>
             </div>
 
-            <button type="submit" class="btn">Submit</button>
+            <!-- Card Payment -->
+            <div id="card-section" class="hidden mb-4">
+                <label class="block mb-2 text-gray-600">Card Details</label>
+                <input type="text" class="w-full p-2 border rounded mb-2" placeholder="Card Number">
+                <div class="flex space-x-2 mb-2">
+                    <input type="text" class="w-1/2 p-2 border rounded" placeholder="MM/YY">
+                    <input type="text" class="w-1/2 p-2 border rounded" placeholder="CVC">
+                </div>
+                <input type="text" class="w-full p-2 border rounded mb-2" placeholder="Name on Card">
+            </div>
+
+            <!-- M-Pesa Payment -->
+            <div id="mpesa-section" class="hidden mb-4">
+                <label class="block mb-2 text-gray-600">M-Pesa Number</label>
+                <input type="text" class="w-full p-2 border rounded mb-2" placeholder="Enter M-Pesa Number">
+            </div>
+
+            <!-- PayPal Payment -->
+            <div id="paypal-section" class="hidden mb-4">
+                <label class="block mb-2 text-gray-600">PayPal Email</label>
+                <input type="email" class="w-full p-2 border rounded mb-2" placeholder="Enter PayPal Email">
+            </div>
+
+            <button type="submit" class="w-full bg-blue-700 text-white py-3 px-6 rounded mt-4 font-semibold">Donate Now</button>
         </form>
     </div>
 
+    <script>
+        function showPayment(method) {
+            document.getElementById('card-section').classList.add('hidden');
+            document.getElementById('mpesa-section').classList.add('hidden');
+            document.getElementById('paypal-section').classList.add('hidden');
+            if (method === 'card') {
+                document.getElementById('card-section').classList.remove('hidden');
+            }
+            if (method === 'mpesa') {
+                document.getElementById('mpesa-section').classList.remove('hidden');
+            }
+            if (method === 'paypal') {
+                document.getElementById('paypal-section').classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
-
 </html>
